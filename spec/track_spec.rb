@@ -22,8 +22,28 @@ RSpec.describe Track do
   end
 
   describe '#display_name' do
-    it 'returns the properly formatted display name' do
-      expect(track.display_name).to eq("\"One\" by Ghostface Killah")
+    describe 'full' do
+      it 'returns the properly formatted string for unplayed tracks' do
+        message = track.display_name(:full)
+        expect(message).to eq("\"One\" by Ghostface Killah (unplayed)")
+      end
+      it 'returns the properly formatted string for played tracks' do
+        track.play
+        message = track.display_name(:full)
+        expect(message).to eq("\"One\" by Ghostface Killah (played)")
+      end
+    end
+    describe 'title_and_artist' do
+      it 'returns the properly formatted string' do
+        message = track.display_name(:title_and_artist)
+        expect(message).to eq("\"One\" by Ghostface Killah")
+      end
+    end
+    describe 'title' do
+      it 'returns the properly formatted string' do
+        message = track.display_name(:title)
+        expect(message).to eq("\"One\"")
+      end
     end
   end
 end

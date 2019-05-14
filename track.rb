@@ -15,7 +15,14 @@ class Track
     self
   end
 
-  def display_name
-    "\"#{title}\" by #{artist}"
+  def display_name(version)
+    case version
+    when :full
+      "\"#{title}\" by #{artist} (#{played? ? 'played' : 'unplayed'})"
+    when :title_and_artist
+      "\"#{title}\" by #{artist}"
+    when :title
+      "\"#{title}\""
+    end
   end
 end

@@ -1,0 +1,18 @@
+#!/usr/bin/env ruby
+
+require './runner.rb'
+
+runner = Runner.new
+
+puts "Welcome to your music collection!"
+while true
+  print "> "
+  input = gets
+  result = runner.parse_input(input)
+  if result == :quit
+    puts "Bye!"
+    break
+  else
+    [*result].each { |m| puts m }
+  end
+end
