@@ -16,7 +16,7 @@ class Library
     @tracks << Track.new(title, artist)
   end
 
-  def unplayed_by_artist(artist)
+  def unplayed_tracks_by_artist(artist)
     find_tracks_by_artist(artist).unplayed
   end
 

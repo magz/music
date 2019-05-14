@@ -64,10 +64,23 @@ RSpec.describe Library do
 
       it 'returns unplayed from argument set of tracks' do
         played_track = Track.new('Ghostface Killah', 'One').play
-        unplayed_track = Track.new('Ghostface Killah', 'NutMeg')
+        unplayed_track = Track.new('Ghostface Killah', 'Nutmeg')
         unplayed_tracks = library.unplayed([played_track, unplayed_track])
         expect(unplayed_tracks.count).to eq(1)
-        expect(unplayed_tracks.map(&:title)).to contain_exactly('NutMeg')
+        expect(unplayed_tracks.map(&:title)).to contain_exactly('Nutmeg')
+      end
+    end
+
+    describe '#unplayed_tracks_by_artist' do
+      it 'returns only unplayed tracks by artist' do
+        library.add_track('Ghostface Killah', 'Nutmeg')
+        library.add_track('Wu Tang Clan', 'Da Art of Chessboxin')
+        library.play_track('Nutmeg')
+
+        unplayed_tracks = library.unplayed_tracks_by_artist('Ghostface Killah')
+
+        expect(unplayed_tracks.count).to eq(1)
+        expect(unplayed_tracks.map(&:title)).to contain_exactly('One')
       end
     end
   end
