@@ -13,7 +13,7 @@ class Runner
       if track
         "Added #{track.display_name(:title_and_artist)}"
       else
-        "Track with title \"#{$1}\ already exists"
+        "Track with title \"#{$1}\" already exists"
       end
     when /^play "(.*)"/
       track = library.play_track($1)
