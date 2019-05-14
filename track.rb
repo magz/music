@@ -12,5 +12,10 @@ class Track
 
   def play
     @played = true
+    self
+  end
+
+  def display_name
+    "\"#{title}\" by #{artist}"
   end
 end
