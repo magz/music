@@ -1,6 +1,5 @@
 require './track.rb'
 
-
 class Library
   attr_accessor :tracks
   def initialize
