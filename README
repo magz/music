@@ -1,0 +1,33 @@
+App works as described in instructions.
+
+It can be started with
+
+./music
+
+and tests can be run using `rspec`
+
+
+The query methods inside of library.rb are relatively inefficient and would run into problems in the event that there were a large number of tracks.  In a normal app, the database layer could be leveraged in order to handle a large number of trakcks (particularly with indices).  I did, however, implement composable query methods, which would be helpful for further development, including while implementing such a DB system.
+
+If I wanted to implement a more robust track storage system in memory, I would use a set of hashes to store that data (though this would make bookkeeping more complciated).  Something like:
+
+class Library
+  def initialize
+    @tracks_by_title = {}
+    @tracks_by_artist = Hash.new { |h,k| h[k] = [] }
+  end
+
+  def add_track(artist, title)
+    track = Track.new(artist, title)
+    @tracks_by_title[title] = track
+    @tracks_by_artist[artist] << track
+  end
+
+  def find_track_by_title(title)
+    @tracks_by_title[title]
+  end
+
+  def find_tracks_by_artist(artist)
+    @tracks_by_artist[artist]
+  end
+end
